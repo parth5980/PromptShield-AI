@@ -358,6 +358,3 @@ References:
 - Dettmers, T., et al. *QLoRA: Efficient Finetuning of Quantized LLMs.* 2023.
 - Qwen Team. *Qwen2.5* model family.
 
----
-
-**Author:** Parth, final-year B.Tech Computer Engineering student, LDRP Institute of Technology.
