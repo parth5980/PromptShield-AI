@@ -1,0 +1,3 @@
+model,epoch,train_minutes,train_peak_gb,val_prompts_per_s,ap,precision,recall,f1,recall_at_1pct_fp,safe_flagged
+lora,1,30.5734,9.0272,19.1323,0.9703,0.9477,0.867,0.9055,0.8371,32
+lora,2,30.8004,9.0272,18.9527,0.9727,0.9553,0.8625,0.9065,0.8595,27

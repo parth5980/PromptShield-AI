@@ -1,0 +1,26 @@
+{
+  "deepset_test.csv": {
+    "sha256": "22d53c822b479dd46c6ee2617a026a1f82e1190830d628d832cf9a28fcf5e6da",
+    "bytes": 15067
+  },
+  "deepset_train.csv": {
+    "sha256": "4cba9fb9876c13ebfb126db825694f00a42eda3fc5be9ca537d48dc3d51724bd",
+    "bytes": 67190
+  },
+  "itw_jailbreak.csv": {
+    "sha256": "accf97463de96c33c48453dfee9600191ff6fd5a0c43f3f11d5ebf98d1a5de55",
+    "bytes": 3778717
+  },
+  "itw_regular.csv": {
+    "sha256": "fb82e3f88fbd5d9c6edf8927b138510f339b85012cab24d41d13e1665a9c5819",
+    "bytes": 24307583
+  },
+  "safeguard_test.csv": {
+    "sha256": "8a294a8ff16d853611509f75eecc995cc4d21cba297fd58e76f5f60f9c0ee787",
+    "bytes": 769706
+  },
+  "safeguard_train.csv": {
+    "sha256": "ddc67b116562f6b5742ec3d432bd2a156cd542805a621961a1a326d679d0c33b",
+    "bytes": 3224665
+  }
+}

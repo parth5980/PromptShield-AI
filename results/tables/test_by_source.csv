@@ -1,0 +1,17 @@
+model,source,attack_rows,attacks_caught,safe_rows,safe_flagged_rate
+TF-IDF + LR,deepset,28,0.107,57,0.018
+TF-IDF + LR,itw_jailbreak,192,0.719,1,0.0
+TF-IDF + LR,itw_regular,26,1.0,1549,0.028
+TF-IDF + LR,safeguard,425,0.951,1022,0.0
+DistilBERT,deepset,28,0.393,57,0.018
+DistilBERT,itw_jailbreak,192,0.724,1,0.0
+DistilBERT,itw_regular,26,0.846,1549,0.025
+DistilBERT,safeguard,425,0.946,1022,0.0
+Qwen LoRA,deepset,28,0.643,57,0.018
+Qwen LoRA,itw_jailbreak,192,0.766,1,0.0
+Qwen LoRA,itw_regular,26,0.923,1549,0.021
+Qwen LoRA,safeguard,425,0.967,1022,0.001
+Qwen QLoRA,deepset,28,0.5,57,0.0
+Qwen QLoRA,itw_jailbreak,192,0.75,1,0.0
+Qwen QLoRA,itw_regular,26,0.962,1549,0.019
+Qwen QLoRA,safeguard,425,0.967,1022,0.001

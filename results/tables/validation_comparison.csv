@@ -1,0 +1,5 @@
+model,AP,recall@1%FP,recall@0.5%FP,recall@0.2%FP,precision@0.5,recall@0.5,safe flagged@0.5
+TF-IDF + LR,0.953,0.815,0.786,0.631,0.979,0.773,11
+DistilBERT,0.966,0.846,0.752,0.692,0.929,0.894,46
+Qwen LoRA,0.973,0.859,0.789,0.744,0.955,0.862,27
+Qwen QLoRA,0.972,0.849,0.825,0.759,0.938,0.897,40

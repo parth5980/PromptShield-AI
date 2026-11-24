@@ -1,0 +1,5 @@
+model,threshold_1pct_fp,val_recall,val_precision,val_safe_flagged
+TF-IDF + LR,0.3548,0.815,0.953,27
+DistilBERT,0.7821,0.846,0.954,27
+Qwen LoRA,0.5115,0.859,0.955,27
+Qwen QLoRA,0.7834,0.849,0.955,27

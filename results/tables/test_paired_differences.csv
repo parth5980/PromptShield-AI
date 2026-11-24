@@ -1,0 +1,11 @@
+comparison,metric,difference,95% CI,CI excludes 0
+Qwen LoRA minus DistilBERT,AP,0.007,"[-0.000, 0.014]",False
+Qwen LoRA minus DistilBERT,recall@val_cutoff,0.039,"[0.015, 0.067]",True
+Qwen QLoRA minus DistilBERT,AP,0.007,"[-0.000, 0.017]",False
+Qwen QLoRA minus DistilBERT,recall@val_cutoff,0.03,"[0.007, 0.057]",True
+Qwen LoRA minus Qwen QLoRA,AP,-0.0,"[-0.006, 0.005]",False
+Qwen LoRA minus Qwen QLoRA,recall@val_cutoff,0.009,"[-0.013, 0.031]",False
+Qwen LoRA minus TF-IDF + LR,AP,0.023,"[0.012, 0.038]",True
+Qwen LoRA minus TF-IDF + LR,recall@val_cutoff,0.043,"[0.017, 0.075]",True
+DistilBERT minus TF-IDF + LR,AP,0.016,"[0.005, 0.031]",True
+DistilBERT minus TF-IDF + LR,recall@val_cutoff,0.004,"[-0.023, 0.034]",False

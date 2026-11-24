@@ -1,0 +1,5 @@
+source_dataset,attack_rows,attack_caught,safe_rows,safe_wrongly_flagged
+deepset,28,0.714,46,0.0
+itw_jailbreak,197,0.761,1,0.0
+itw_regular,15,0.867,1449,0.029
+safeguard,429,0.967,1133,0.004

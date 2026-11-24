@@ -1,0 +1,3 @@
+model,epoch,train_minutes,train_peak_gb,val_prompts_per_s,ap,precision,recall,f1,recall_at_1pct_fp,safe_flagged
+qlora,1,33.0973,7.1513,18.2819,0.9719,0.9375,0.8969,0.9167,0.849,40
+qlora,2,32.9563,7.1513,18.2623,0.9698,0.9409,0.8804,0.9097,0.8655,37
