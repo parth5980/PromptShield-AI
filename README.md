@@ -50,14 +50,13 @@ The emphasis is on **evaluation you can trust**: data quality was investigated r
 
 A small Streamlit app runs the DistilBERT detector. Paste a prompt (or pick one of six examples), press **Analyze**, and it shows **SAFE** or **ATTACK** together with the attack score, the decision threshold, and the model name.
 
-![PromptShield AI demo](docs/images/app_demo.png)
+![PromptShield AI demo](docs/images/app_demo.png):-https://promptshield-ai-5q2iegzzq5pdsrzdbavbqo.streamlit.app/
 
 - A prompt is labelled **ATTACK** when its attack score is **above the decision threshold** (0.7821 for DistilBERT), the same rule used in the evaluation.
 - The threshold is read from `results/tables/thresholds_from_validation.csv`; it was chosen on the validation set and never changed afterwards.
 - The attack score is a **model output between 0 and 1, not a calibrated probability** (calibration was not verified).
 - The app code does not store prompts. Empty input and prediction errors are handled with plain messages.
 
-See [Run the app locally](#run-the-app-locally).
 
 ---
 
