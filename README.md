@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![Task](https://img.shields.io/badge/task-binary%20text%20classification-informational)
 ![Models](https://img.shields.io/badge/models-TF--IDF%20%7C%20DistilBERT%20%7C%20Qwen2.5--1.5B%20(LoRA%2FQLoRA)-8a2be2)
-![Demo](https://img.shields.io/badge/demo-Streamlit-ff4b4b)
+[![Live demo](https://img.shields.io/badge/live%20demo-Streamlit%20Cloud-ff4b4b)](https://promptshield-ai-5q2iegzzq5pdsrzdbavbqo.streamlit.app/)
 ![Status](https://img.shields.io/badge/status-research%20prototype-orange)
 
 PromptShield AI classifies an English prompt as **Safe** or **Attack** before it reaches a language model. "Attack" covers prompt injection (overriding instructions, extracting hidden instructions or secrets) and jailbreaks (removing a model's safety rules). The project compares four detectors on a carefully audited dataset, with a leakage-safe train/validation/test split, thresholds frozen on validation, and a test set that was scored exactly once.
@@ -36,12 +36,13 @@ The emphasis is on **evaluation you can trust**: data quality was investigated r
 
 | | |
 |---|---|
+| **Live demo** | [Streamlit app](https://promptshield-ai-5q2iegzzq5pdsrzdbavbqo.streamlit.app/) (DistilBERT) |
 | **Task** | Binary classification of English prompts: `safe` vs `attack` |
 | **Data** | 24,011 prompts from three public datasets, after auditing and cleaning (train 17,413, validation 3,298, test 3,300) |
 | **Models** | TF-IDF + logistic regression, DistilBERT, Qwen2.5-1.5B with LoRA, Qwen2.5-1.5B with QLoRA |
 | **Best test result** | Qwen LoRA/QLoRA: about **89% of attacks caught** at a **1.1% to 1.3%** false-positive rate on safe prompts |
-| **Cheapest option** | DistilBERT: 8x lower latency and about 20x less memory than Qwen, with a modest accuracy gap |
-| **Efficiency finding** | QLoRA matched LoRA's accuracy with **49% less inference memory** (21% less during training) |
+| **Cheapest option** | DistilBERT: 8x lower latency and 21x less GPU memory than Qwen + LoRA, with a modest accuracy gap |
+| **Efficiency finding** | QLoRA matched LoRA's accuracy with **49% less peak inference memory** (61% less once loaded, 21% less peak during training) |
 | **Test discipline** | Checkpoints and cut-offs chosen on validation only; test split scored once; 95% bootstrap intervals over prompt families |
 
 ---
@@ -50,13 +51,14 @@ The emphasis is on **evaluation you can trust**: data quality was investigated r
 
 A small Streamlit app runs the DistilBERT detector. Paste a prompt (or pick one of six examples), press **Analyze**, and it shows **SAFE** or **ATTACK** together with the attack score, the decision threshold, and the model name.
 
-![PromptShield AI demo](docs/images/app_demo.png):-https://promptshield-ai-5q2iegzzq5pdsrzdbavbqo.streamlit.app/
+**[Try the live demo](https://promptshield-ai-5q2iegzzq5pdsrzdbavbqo.streamlit.app/)**
+
+![PromptShield AI demo](docs/images/app_demo.png)
 
 - A prompt is labelled **ATTACK** when its attack score is **above the decision threshold** (0.7821 for DistilBERT), the same rule used in the evaluation.
 - The threshold is read from `results/tables/thresholds_from_validation.csv`; it was chosen on the validation set and never changed afterwards.
 - The attack score is a **model output between 0 and 1, not a calibrated probability** (calibration was not verified).
 - The app code does not store prompts. Empty input and prediction errors are handled with plain messages.
-
 
 ---
 
@@ -237,9 +239,9 @@ Safe prompts wrongly flagged: `itw_regular` 2.8% / 2.5% / 2.1% / 1.9% (of 1,549)
 
 1. **Both Qwen models beat the word-counting baseline**: average precision +0.02 and recall +4 points, with intervals excluding zero.
 2. **Qwen has a modest edge over DistilBERT in recall at the chosen operating point** (+3 to +4 points, intervals exclude zero), and flagged fewer safe prompts. In average precision the edge is only +0.007 and its interval touches zero, so it is a trend, not a result.
-3. **LoRA and QLoRA are indistinguishable** on every metric. QLoRA gave up no measurable accuracy while using 49% less memory at inference.
+3. **LoRA and QLoRA are indistinguishable** on every metric. QLoRA gave up no measurable accuracy while using 49% less peak memory at inference (61% less once loaded).
 4. **QLoRA's price is speed:** 61% higher latency for a single prompt (97 vs 60 ms), but only 12% lower throughput at batch 32.
-5. **The accuracy gain over DistilBERT costs about 8x the latency and 20x the memory.** For a low-latency guard in front of a chatbot, DistilBERT is the pragmatic choice; Qwen + QLoRA suits accuracy-first use with limited GPU memory.
+5. **The accuracy gain over DistilBERT costs about 8x the latency and 21x the GPU memory (Qwen + LoRA; 13x and 8x for QLoRA).** For a low-latency guard in front of a chatbot, DistilBERT is the pragmatic choice; Qwen + QLoRA suits accuracy-first use with limited GPU memory.
 
 ---
 
@@ -265,8 +267,8 @@ This is a research prototype. Read the numbers with the following in mind.
 ## Run the app locally
 
 ```bash
-git clone https://github.com/<your-username>/prompt-guard-detector.git
-cd prompt-guard-detector
+git clone https://github.com/parth5980/PromptShield-AI.git
+cd PromptShield-AI
 
 conda create -n promptshield-app python=3.11 -y
 conda activate promptshield-app
@@ -308,7 +310,7 @@ To rebuild the dataset: run `01` to download the sources, check them with `verif
 ## Repository structure
 
 ```
-prompt-guard-detector/
+PromptShield-AI/
 ├── app.py                         Streamlit demo (UI only)
 ├── promptshield/                  model registry and predictor used by the app
 ├── scripts/check_predictor.py     checks the app's predictor against saved validation scores
@@ -319,7 +321,8 @@ prompt-guard-detector/
 │   ├── dataset_v2_labels.csv      final labels, provenance and splits (no prompt text)
 │   └── raw_manifest.json          SHA256 fingerprints of the raw downloads
 ├── adapters/                      LoRA and QLoRA adapters (17.5 MB each)
-├── docs/                          annotation guidelines, screenshots
+├── docs/                          annotation guidelines
+│   └── images/app_demo.png        demo screenshot used in this README
 ├── requirements.txt
 └── README.md
 ```
@@ -336,7 +339,8 @@ Not in the repository: the raw and processed datasets (they contain prompt text)
 - Repeat training with **several seeds** and report seed variance.
 - Add **three-class labels** (safe, jailbreak, injection) and **indirect injection** examples (instructions inside documents and tool outputs).
 - Merge the LoRA adapter into the base weights and measure the latency difference.
-- Publish the DistilBERT weights and deploy the app publicly.
+- Publish the DistilBERT weights on Hugging Face.
+- **In progress:** compare PromptShield with Meta's Llama Prompt Guard 2 (86M) on the same test set, with the same frozen-cut-off protocol.
 
 ---
 
