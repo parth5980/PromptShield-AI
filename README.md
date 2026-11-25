@@ -53,8 +53,6 @@ A small Streamlit app runs the DistilBERT detector. Paste a prompt (or pick one 
 
 **[Try the live demo](https://promptshield-ai-5q2iegzzq5pdsrzdbavbqo.streamlit.app/)**
 
-![PromptShield AI demo](docs/images/app_demo.png)
-
 - A prompt is labelled **ATTACK** when its attack score is **above the decision threshold** (0.7821 for DistilBERT), the same rule used in the evaluation.
 - The threshold is read from `results/tables/thresholds_from_validation.csv`; it was chosen on the validation set and never changed afterwards.
 - The attack score is a **model output between 0 and 1, not a calibrated probability** (calibration was not verified).
