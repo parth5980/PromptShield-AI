@@ -10,8 +10,6 @@
 
 **[Try the live demo](https://promptshield-ai-5q2iegzzq5pdsrzdbavbqo.streamlit.app/)**
 
-![PromptShield AI demo](docs/images/app_demo.png)
-
 This project is about **trustworthy evaluation**, not only about building a model. We trained four detectors, but we also checked the data for mistakes, split it in a fair way, fixed all settings before the final test, and compared the results with an outside model from Meta. Every number in this README comes with its limits.
 
 ---
